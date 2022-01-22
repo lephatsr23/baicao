@@ -9,7 +9,9 @@ using std::cout;
 
 int nguoichoi[5][3];
 int diemnguoichoi[5];
-
+#define SOTIENBANDAU 100000
+#define SOCUOCMOIVAN 10000
+#define solabai 3
 typedef struct nguoichoibai {
 	string ten;
 	int diem;
@@ -21,15 +23,14 @@ typedef struct nguoichoibai {
 
 int main() {
 	cout << "Game Than bai bai cao " << endl;
-	int solabai = 3;
-	int songuoichoi = 5;
+
 	int diem = 0;
 	int solabaiJQK = 0;
 	int sovanchoi = 0;
 	vector<nguoichoibai> danhsachnguoichoi;
 	// doc file tu file txt
 	ifstream filebai;
-	filebai.open("input4.txt");
+	filebai.open("input5.txt");
 	string n;
 	if (filebai.fail()) {
 		cout << " Khong tim thay file bai " << endl;
@@ -38,32 +39,32 @@ int main() {
 	nguoiChoiBai bientam;
 	bientam.ten = "Dau";
 	bientam.diem = 0;
-	bientam.tien = 100000;
+	bientam.tien = SOTIENBANDAU;
 	bientam.vaitro = "nha cai";
 	danhsachnguoichoi.push_back(bientam);
 	bientam.ten = "Ti";
 	bientam.diem = 0;
-	bientam.tien = 100000;
+	bientam.tien = SOTIENBANDAU;
 	bientam.vaitro = "NguoiChoi";
 	danhsachnguoichoi.push_back(bientam);
 	bientam.ten = "Su";
 	bientam.diem = 0;
-	bientam.tien = 100000;
+	bientam.tien = SOTIENBANDAU;
 	bientam.vaitro = "NguoiChoi";
 	danhsachnguoichoi.push_back(bientam);
 	bientam.ten = "Lu";
 	bientam.diem = 0;
-	bientam.tien = 100000;
+	bientam.tien = SOTIENBANDAU;
 	bientam.vaitro = "NguoiChoi";
 	danhsachnguoichoi.push_back(bientam);
 	bientam.ten = "Teo Anh";
 	bientam.diem = 0;
-	bientam.tien = 100000;
+	bientam.tien = SOTIENBANDAU;
 	bientam.vaitro = "NguoiChoi";
 	danhsachnguoichoi.push_back(bientam);
 	bientam.ten = "Teo Em";
 	bientam.diem = 0;
-	bientam.tien = 100000;
+	bientam.tien = SOTIENBANDAU;
 	bientam.vaitro = "NguoiChoi";
 	danhsachnguoichoi.push_back(bientam);
 
@@ -88,17 +89,17 @@ int main() {
 	filebai.close();
 	for (int  k = 0; k < sovanchoi; k++)
 	{
-		cout << " Mo bai luot " << sovanchoi << endl;
-		for (int i = 0; i < danhsachnguoichoi.size(); i++) {
-			cout << "Nguoi choi thu " << i << endl;
-			for (int j = k * 3; j < solabai + k*3 ; j++) {
-				cout << danhsachnguoichoi[i].nhunglabai[j] << " ";
-			}
-			cout << endl;
-		}
+		//cout << " Mo bai luot " << sovanchoi << endl;
+		//for (int i = 0; i < danhsachnguoichoi.size(); i++) {
+		//	cout << "Nguoi choi thu " << i << endl;
+		//	for (int j = k * solabai; j < solabai + k* solabai; j++) {
+		//		cout << danhsachnguoichoi[i].nhunglabai[j] << " ";
+		//	}
+		//	cout << endl;
+		//}
 		for (int i = 0; i < danhsachnguoichoi.size(); i++) {
 			solabaiJQK = 0;
-			for (int j = k * 3; j < solabai + k * 3; j++) {
+			for (int j = k * solabai; j < solabai + k * solabai; j++) {
 				if (danhsachnguoichoi[i].nhunglabai[j] == "J" || danhsachnguoichoi[i].nhunglabai[j] == "Q" || danhsachnguoichoi[i].nhunglabai[j] == "K") {
 					solabaiJQK++;
 				}
@@ -110,7 +111,7 @@ int main() {
 		for (int i = 0; i < danhsachnguoichoi.size(); i++) {
 			if (danhsachnguoichoi[i].cobacao != 1) {
 				diem = 0;
-				for (int j = k * 3; j < solabai + k * 3; j++) {
+				for (int j = k * solabai; j < solabai + k * solabai; j++) {
 
 					if (danhsachnguoichoi[i].nhunglabai[j] == "A") {
 						diem = diem + 1;
@@ -127,40 +128,40 @@ int main() {
 			}
 		}
 		if (danhsachnguoichoi[0].cobacao == 1) {
-			cout << "Nha cai co ba cao " << endl;
+			//cout << "Nha cai co ba cao " << endl;
 		}
 		else {
-			cout << "Nha cai co diem " << danhsachnguoichoi[0].diem << endl;
+			//cout << "Nha cai co diem " << danhsachnguoichoi[0].diem << endl;
 		}
 
 		for (int i = 1; i < danhsachnguoichoi.size(); i++) {
 			if (danhsachnguoichoi[0].cobacao == 1) {
 				
 				if (danhsachnguoichoi[i].cobacao != 1) {
-					cout << danhsachnguoichoi[i].ten << " Thua" << endl;
-					danhsachnguoichoi[i].tien = danhsachnguoichoi[i].tien - 10000;
-					danhsachnguoichoi[0].tien = danhsachnguoichoi[0].tien + 10000;
+					//cout << danhsachnguoichoi[i].ten << " Thua" << endl;
+					danhsachnguoichoi[i].tien = danhsachnguoichoi[i].tien - SOCUOCMOIVAN;
+					danhsachnguoichoi[0].tien = danhsachnguoichoi[0].tien + SOCUOCMOIVAN;
 				}
 				else if (danhsachnguoichoi[i].cobacao == 1) {
-					cout << danhsachnguoichoi[i].ten << " Hoa" << endl;
+					//cout << danhsachnguoichoi[i].ten << " Hoa" << endl;
 				}
 			}
 			else if (danhsachnguoichoi[0].cobacao != 1){
 				
 				if (danhsachnguoichoi[i].cobacao == 1) {
-					cout << danhsachnguoichoi[i].ten << " Thang" << endl;
-					danhsachnguoichoi[i].tien = danhsachnguoichoi[i].tien + 10000;
-					danhsachnguoichoi[0].tien = danhsachnguoichoi[0].tien - 10000;
+					//cout << danhsachnguoichoi[i].ten << " Thang" << endl;
+					danhsachnguoichoi[i].tien = danhsachnguoichoi[i].tien + SOCUOCMOIVAN;
+					danhsachnguoichoi[0].tien = danhsachnguoichoi[0].tien - SOCUOCMOIVAN;
 				}
 				else if (danhsachnguoichoi[0].diem > danhsachnguoichoi[i].diem) {
-					cout << danhsachnguoichoi[i].ten << " Thua" << endl;
-					danhsachnguoichoi[i].tien = danhsachnguoichoi[i].tien - 10000;
-					danhsachnguoichoi[0].tien = danhsachnguoichoi[0].tien + 10000;
+					//cout << danhsachnguoichoi[i].ten << " Thua" << endl;
+					danhsachnguoichoi[i].tien = danhsachnguoichoi[i].tien - SOCUOCMOIVAN;
+					danhsachnguoichoi[0].tien = danhsachnguoichoi[0].tien + SOCUOCMOIVAN;
 				}
 				else if (danhsachnguoichoi[0].diem < danhsachnguoichoi[i].diem) {
-					cout << danhsachnguoichoi[i].ten << " Thang" << endl;
-					danhsachnguoichoi[i].tien = danhsachnguoichoi[i].tien + 10000;
-					danhsachnguoichoi[0].tien = danhsachnguoichoi[0].tien - 10000;
+					//cout << danhsachnguoichoi[i].ten << " Thang" << endl;
+					danhsachnguoichoi[i].tien = danhsachnguoichoi[i].tien + SOCUOCMOIVAN;
+					danhsachnguoichoi[0].tien = danhsachnguoichoi[0].tien - SOCUOCMOIVAN;
 				}
 			}
 		}
@@ -170,17 +171,27 @@ int main() {
 		}
 	}
 	cout << " KET QUA" << endl;
-	for (int i = 0; i < danhsachnguoichoi.size(); i++) {
-		if (danhsachnguoichoi[i].tien < 100000) {
-			cout << danhsachnguoichoi[i].ten << " thua " << 100000 - danhsachnguoichoi[i].tien << endl;
+	for (int i = 0; i < danhsachnguoichoi.size() - 1; i++) {
+		if (danhsachnguoichoi[i].tien < SOTIENBANDAU) {
+			cout << danhsachnguoichoi[i].ten << " thua " <<  danhsachnguoichoi[i].tien << endl;
 		}
-		else if (danhsachnguoichoi[i].tien > 100000) {
-			cout << danhsachnguoichoi[i].ten << " thang " << danhsachnguoichoi[i].tien  << endl;
+		else if (danhsachnguoichoi[i].tien > SOTIENBANDAU) {
+			cout << danhsachnguoichoi[i].ten << " thang " <<  danhsachnguoichoi[i].tien  << endl;
 		}
-		else if (danhsachnguoichoi[i].tien == 100000) {
+		else if (danhsachnguoichoi[i].tien == SOTIENBANDAU) {
 			cout << danhsachnguoichoi[i].ten << " hoa " << danhsachnguoichoi[i].tien << endl;
 		}
 	}
+	if (danhsachnguoichoi[danhsachnguoichoi.size() - 1].tien < SOTIENBANDAU) {
+		cout << danhsachnguoichoi[danhsachnguoichoi.size() - 1].ten << " thua " <<  danhsachnguoichoi[danhsachnguoichoi.size() - 1].tien ;
+	}
+	else if (danhsachnguoichoi[danhsachnguoichoi.size() - 1].tien > SOTIENBANDAU) {
+		cout << danhsachnguoichoi[danhsachnguoichoi.size() - 1].ten << " thang " << danhsachnguoichoi[danhsachnguoichoi.size() - 1].tien;
+	}
+	else if (danhsachnguoichoi[danhsachnguoichoi.size() - 1].tien == SOTIENBANDAU) {
+		cout << danhsachnguoichoi[danhsachnguoichoi.size() - 1].ten << " hoa " << danhsachnguoichoi[danhsachnguoichoi.size() - 1].tien;
+	}
+
 	system("pause");
 	return 0;
 }
